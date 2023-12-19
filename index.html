@@ -1,55 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - ERAH</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="shortcut icon" href="/assets/ERAH_Logo_sans_texte.png" type="image/x-icon">
+    <title>Administratif - ERAH</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        #container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #checkboxContainer {
+            margin: 20px 0;
+        }
+
+        #checkboxContainer label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        #acceptCheckbox {
+            margin-right: 10px;
+        }
+
+        #infoBox {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+            border: 1px solid #bdc3c7;
+        }
+
+        #continueButton {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #continueButton:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        #continueButton:hover {
+            background-color: #2980b9;
+        }
+
+        #container:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
-    <header class="cd-header">
-		<div class="header-wrapper">
-			<div class="logo-wrap">
-				<a href="#" class="hover-target"><span>ERAH</span> GESTION</a>
-			</div>
-			<div class="nav-but-wrap">
-				<div class="menu-icon hover-target">
-					<span class="menu-icon__line menu-icon__line-left"></span>
-					<span class="menu-icon__line"></span>
-					<span class="menu-icon__line menu-icon__line-right"></span>
-				</div>					
-			</div>					
-		</div>				
-	</header>
 
-	<div class="nav">
-		<div class="nav__content">
-			<ul class="nav__list">
-				<li class="nav__list-item active-nav"><a href="#" class="hover-target">home</a></li>
-				<li class="nav__list-item"><a href="#" class="hover-target">studio</a></li>
-				<li class="nav__list-item"><a href="#" class="hover-target">news</a></li>
-				<li class="nav__list-item"><a href="#" class="hover-target">contact</a></li>
-			</ul>
-		</div>
-	</div>		
+<div id="container">
+    <h2>Administratif - ERAH</h2>
+    
+    <div id="checkboxContainer">
+        <label>
+            <input type="checkbox" id="acceptCheckbox"> J'accepte les termes et conditions
+        </label>
+    </div>
 
-	<div class="section full-height over-hide">	
-		<div class="switch-wrap">
-			<h1>overlay menu</h1>
-			<div id="switch" class="hover-target">
-				<div id="circle"></div>
-			</div>
-			<p><span>dark</span> - <span>light</span></p>
-		</div>
-	</div>	
-	
-	<div class='cursor' id="cursor"></div>
-	<div class='cursor2' id="cursor2"></div>
-	<div class='cursor3' id="cursor3"></div>
+    <div id="infoBox">
+        En acceptant les termes et conditions, vous confirmez ne devoir en aucun cas divulguer les documents auxquels vous aurez accès.
 
+        Vous vous engagez à respecter chaque document à signer et à les lire attentivement pour votre intégration à l'association. Vous vous engagez également à respecter vos droits, devoirs et tâches.
+    </div>
+    
+    <a href="administratif/index.html">
+        <button id="continueButton" onclick="continueIfAccepted()" disabled>Continuer</button>
+    </a>
 
-    <a href="https://twitter.com/ErahEsport" class="link-to-portfolio hover-target" target=”_blank”></a>
-    <script src="script.js"></script>
+    <script>
+        function continueIfAccepted() {
+            var checkBox = document.getElementById("acceptCheckbox");
+
+            if (checkBox.checked) {
+                // Si la case est cochée, rediriger vers la page suivante
+                window.location.href = "administratif/index.html";
+            } else {
+                // Sinon, afficher un message ou effectuer une action appropriée
+                alert("Veuillez accepter les termes et conditions pour continuer.");
+            }
+        }
+
+        // Activer le bouton uniquement lorsque la case est cochée
+        document.getElementById("acceptCheckbox").addEventListener("change", function () {
+            document.getElementById("continueButton").disabled = !this.checked;
+        });
+    </script>
+</div>
+
 </body>
 </html>
